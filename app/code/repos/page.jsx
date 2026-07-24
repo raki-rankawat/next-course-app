@@ -3,6 +3,9 @@ import { FaStar, FaCodeBranch, FaEye } from 'react-icons/fa'
 
 async function fetchRepos() {
   const res = await fetch(`https://api.github.com/users/raki-rankawat/repos`)
+
+  // await new Promise(res => setTimeout(res, 1000))
+
   const repos = await res.json()
   return repos
 }
