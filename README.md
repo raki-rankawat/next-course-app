@@ -103,17 +103,17 @@ sequenceDiagram
     participant U as User
     participant P as HomePage (client)
     participant S as CourseSearch
-    participant API as /api/courses
+    participant API as Route handlers
     participant D as data.json
 
-    P->>P: useState([]) + loading = true
-    P->>P: render <LoadingPage />
+    P->>P: useState([]) with loading = true
+    P->>P: render LoadingPage
     P->>API: GET /api/courses (useEffect)
     API->>D: import JSON
     D-->>API: 5 courses
     API-->>P: JSON array
-    P->>P: setCourses(data); setLoading(false)
-    P-->>U: <Courses /> grid
+    P->>P: setCourses(data), then setLoading(false)
+    P-->>U: Courses grid
 
     U->>S: type query + submit
     S->>API: GET /api/courses/search?query=…
