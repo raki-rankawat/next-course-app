@@ -3,6 +3,11 @@ import Link from 'next/link'
 async function fetchRepoContents(name) {
   const res = await fetch(
     `https://api.github.com/repos/raki-rankawat/${name}/contents`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    },
   )
   const contents = await res.json()
   return contents
